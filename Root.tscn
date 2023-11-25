@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=30 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://blc38wif555cb" path="res://obstacles/house_b.tscn" id="14_0dds1"]
 [ext_resource type="PackedScene" uid="uid://bmbb6bg5r0ply" path="res://obstacles/house_bar.tscn" id="16_6jdi5"]
 [ext_resource type="PackedScene" uid="uid://ccs202pcy4pce" path="res://obstacles/dialog.tscn" id="17_4mwab"]
+[ext_resource type="PackedScene" uid="uid://mahsivqsy3oo" path="res://obstacles/panchina.tscn" id="18_ch8jo"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
@@ -222,6 +223,15 @@ shadow_enabled = true
 [node name="HouseA" parent="." instance=ExtResource("13_csk8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51074, 0, -17.4926)
 
+[node name="HouseA4" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51074, 0, -48.5445)
+
+[node name="HouseA8" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1303, 0, -29.228)
+
+[node name="HouseA9" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1209, 0, -41.9353)
+
 [node name="HouseA2" parent="." instance=ExtResource("13_csk8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22636, 0, 32.7371)
 
@@ -240,6 +250,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1005, 0, -18.3739)
 [node name="HouseB" parent="." instance=ExtResource("14_0dds1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0695, 0, 6.50642)
 
+[node name="HouseB3" parent="." instance=ExtResource("14_0dds1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38747, 0, -26.8624)
+
+[node name="HouseB6" parent="." instance=ExtResource("14_0dds1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54826, 0, -38.0079)
+
 [node name="HouseB2" parent="." instance=ExtResource("14_0dds1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.127, 0, 29.616)
 
@@ -256,6 +272,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3194, 0, -8.07867)
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -15.3808, 0.0601921, 13.8544)
 
 [node name="Dialog" parent="." instance=ExtResource("17_4mwab")]
-transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 10.6853, 3.88309, 3.3955)
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 10.6244, 3.90306, 3.42363)
+
+[node name="Panchina" parent="." instance=ExtResource("18_ch8jo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15592, 1.90735e-06, -56.557)
+
+[node name="Panchina2" parent="." instance=ExtResource("18_ch8jo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.029, 1.90735e-06, -56.557)
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
