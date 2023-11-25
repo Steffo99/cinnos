@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1p6udf66lht2"]
+
+[ext_resource type="Script" path="res://obstacles/bullet.gd" id="1_dawle"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nnt0g"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rk7k5"]
+radius = 0.58729
+
+[node name="Bullet" type="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_dawle")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("CylinderMesh_nnt0g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, -3.34074e-23, 0, 3.34074e-23, 0.4, 0, 0, 0)
+shape = SubResource("CylinderShape3D_rk7k5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
