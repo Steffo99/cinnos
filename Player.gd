@@ -30,6 +30,9 @@ func on_banana():
 
 
 func _physics_process(delta):
+	velocity.x *= friction
+	velocity.z *= friction
+	
 	# Refilla salto
 	if is_on_floor():
 		refill_jumps()
