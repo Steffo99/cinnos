@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ey6yaaj70kw"]
+
+[ext_resource type="Script" path="res://obstacles/bullet.gd" id="1_igsmj"]
+[ext_resource type="PackedScene" uid="uid://c3g6lxikgfr7e" path="res://models/balla.glb" id="2_48nmr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c6uuh"]
+radius = 0.435146
+
+[node name="Bullet" type="RigidBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+gravity_scale = 0.0
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_igsmj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -4.6454e-15, 6.92218e-22, 4.6454e-15, 1, -3.4244e-15, -6.92218e-22, 3.4244e-15, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_c6uuh")
+
+[node name="balla" parent="." instance=ExtResource("2_48nmr")]
+transform = Transform3D(0.427778, 0, -1.05879e-22, 0, 0.427778, 3.57275e-23, -1.05879e-22, 3.57275e-23, 0.427778, 0, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

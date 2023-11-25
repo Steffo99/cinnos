@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" path="res://obstacles/vent.tscn" id="15_hwvsi"]
 [ext_resource type="PackedScene" uid="uid://cbmkrd5kwiujt" path="res://obstacles/torretta.tscn" id="17_6hms3"]
 [ext_resource type="PackedScene" uid="uid://mahsivqsy3oo" path="res://obstacles/panchina.tscn" id="18_ijdrl"]
-[ext_resource type="PackedScene" uid="uid://c1p6udf66lht2" path="res://obstacles/bullet.tscn" id="19_fskgs"]
+[ext_resource type="PackedScene" uid="uid://c8ey6yaaj70kw" path="res://obstacles/bullet_ball.tscn" id="19_u5bb2"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
@@ -260,9 +260,10 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2.89718, 0, 8.66797)
 [node name="Panchina" parent="." instance=ExtResource("18_ijdrl")]
 
 [node name="Torretta" parent="." instance=ExtResource("17_6hms3")]
-transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -5.62694, 0, -13.6183)
+transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -1.29953, 2.64886, 17.8504)
 
-[node name="Bullet" parent="." instance=ExtResource("19_fskgs")]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -11.0235, 0, 14.2821)
+[node name="Torretta2" parent="." instance=ExtResource("17_6hms3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2944, 1, -22.5985)
+bullet = ExtResource("19_u5bb2")
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
