@@ -5,6 +5,8 @@ class_name Player
 @export var input_accel: float = 7.0
 @onready var current_input_accel = input_accel
 
+@export var maxspeed: float = 100
+
 @onready var gravity_accel: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 @export var jump_impulse: Vector3 = Vector3.UP * 5;
 @export var friction: float = 0.8
@@ -30,6 +32,9 @@ func on_banana():
 
 
 func _physics_process(delta):
+	# Applica attrito
+	velocity *= friction
+	
 	# Refilla salto
 	if is_on_floor():
 		refill_jumps()
@@ -44,8 +49,10 @@ func _physics_process(delta):
 	# Applica input
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var input_change = input_dir * input_accel
-	velocity.x += input_change.x * delta
-	velocity.z += input_change.y * delta
+	if velocity.x <= maxspeed:
+		velocity.x += input_change.x * delta
+	if velocity.z <= maxspeed:
+		velocity.z += input_change.y * delta
 
 	move_and_slide()
 	
