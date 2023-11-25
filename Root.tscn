@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=14 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
+[ext_resource type="FontFile" uid="uid://cseshyj4yw2f5" path="res://fonts/FiraSans-Medium.ttf" id="3_p3wyc"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
@@ -26,6 +27,12 @@ size = Vector2(200, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2bm1d"]
 size = Vector3(200, 4, 200)
+
+[sub_resource type="Theme" id="Theme_hkcet"]
+Label/fonts/font = ExtResource("3_p3wyc")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tn1wg"]
+size = Vector2(48, 48)
 
 [node name="Root" type="Node3D"]
 
@@ -61,25 +68,71 @@ shape = SubResource("BoxShape3D_2bm1d")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.955149, 0.296125, 0, -0.296125, 0.955149, 0, 2.66196, 3.33182)
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hkcet")
 
-[node name="Label" type="Label" parent="Control"]
+[node name="TextBox" type="MarginContainer" parent="UI"]
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="UI/TextBox"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TextBox/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Character" type="TextureRect" parent="UI/TextBox/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("PlaceholderTexture2D_tn1wg")
+expand_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/TextBox/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]garasauto[/center]"
+
+[node name="TimerBox" type="MarginContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -81.0
-offset_bottom = 26.0
+offset_bottom = 40.0
 grow_horizontal = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="UI/TimerBox"]
+layout_mode = 2
 text = "Garasauto"
 horizontal_alignment = 2
 
-[node name="GameTimer" type="Node" parent="Control/Label"]
+[node name="GameTimer" type="Node" parent="UI/TimerBox/Label"]
 script = ExtResource("3_y362g")
