@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://4whij2hmts0t"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pnmjt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kpyw3"]
+size = Vector3(1, 0.1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4tnse"]
+size = Vector3(1, 0.1, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_opk07"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_tpbxa"]
+
+[node name="Root" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_wt4gx")
+
+[node name="Man" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+shape = SubResource("CapsuleShape3D_castg")
+
+[node name="Mesh" type="MeshInstance3D" parent="Player/Man"]
+mesh = SubResource("CapsuleMesh_pnmjt")
+skeleton = NodePath("../..")
+
+[node name="Board" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_kpyw3")
+
+[node name="Mesh" type="MeshInstance3D" parent="Player/Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_4tnse")
+skeleton = NodePath("../..")
+
+[node name="Plane" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Plane"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_opk07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane"]
+shape = SubResource("WorldBoundaryShape3D_tpbxa")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.955149, 0.296125, 0, -0.296125, 0.955149, 0, 2.66196, 3.33182)
