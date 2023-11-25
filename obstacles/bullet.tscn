@@ -9,8 +9,12 @@ radius = 0.58729
 
 [node name="Bullet" type="RigidBody3D"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
-collision_layer = 4
+collision_layer = 0
 collision_mask = 4
+gravity_scale = 0.0
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_dawle")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
