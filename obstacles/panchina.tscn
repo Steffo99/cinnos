@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://mahsivqsy3oo"]
+
+[ext_resource type="PackedScene" uid="uid://ci3oqjm7d6n5c" path="res://models/veci.glb" id="1_5rsr2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5q6jj"]
+size = Vector3(7.427, 3.83, 3.989)
+
+[node name="Panchina" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9953, -1.41734, 0.942567)
+collision_layer = 5
+collision_mask = 5
+
+[node name="veci" parent="." instance=ExtResource("1_5rsr2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54723, 2.53125, -0.928533)
+shape = SubResource("BoxShape3D_5q6jj")

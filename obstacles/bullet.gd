@@ -14,4 +14,4 @@ func _process(delta):
 func _on_body_entered(body):
 	if body is Player:
 		body.velocity += (body.global_position - global_position).normalized() * 8
-	queue_free()
+		queue_free()
