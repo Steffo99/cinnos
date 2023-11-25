@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
 [ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
+[ext_resource type="PackedScene" uid="uid://4i2c481rpxe3" path="res://models/cinno.glb" id="8_32hx2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
 [ext_resource type="PackedScene" uid="uid://dp7p16vtxd1xr" path="res://obstacles/house_c.tscn" id="9_xyam4"]
 [ext_resource type="PackedScene" uid="uid://ccs202pcy4pce" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
@@ -19,13 +20,6 @@ Label/fonts/font = ExtResource("3_p3wyc")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_pnmjt"]
-material = ExtResource("2_upp15")
-
-[sub_resource type="BoxMesh" id="BoxMesh_4tnse"]
-material = ExtResource("2_upp15")
-size = Vector3(1, 0.1, 3)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lw6u7"]
 shading_mode = 0
 albedo_color = Color(0.435294, 0.615686, 1, 1)
@@ -33,6 +27,10 @@ albedo_color = Color(0.435294, 0.615686, 1, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_ry4bk"]
 material = SubResource("StandardMaterial3D_lw6u7")
 size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4tnse"]
+material = ExtResource("2_upp15")
+size = Vector3(1, 0.1, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkb30"]
 albedo_texture = ExtResource("3_gtnhv")
@@ -145,16 +143,10 @@ friction = 0.98
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
 shape = SubResource("CapsuleShape3D_castg")
 
-[node name="Mesh" type="MeshInstance3D" parent="Player/Man"]
-mesh = SubResource("CapsuleMesh_pnmjt")
-skeleton = NodePath("../..")
+[node name="cinno" parent="Player/Man" instance=ExtResource("8_32hx2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.253272, 0)
 
 [node name="Board" type="Node3D" parent="Player"]
-
-[node name="Mesh" type="MeshInstance3D" parent="Player/Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-mesh = SubResource("BoxMesh_4tnse")
-skeleton = NodePath("../..")
 
 [node name="PlayerPart" type="CPUParticles3D" parent="Player/Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
@@ -167,6 +159,11 @@ flatness = 1.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 8.0
 initial_velocity_max = 8.0
+
+[node name="Mesh" type="MeshInstance3D" parent="Player/Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_4tnse")
+skeleton = NodePath("../..")
 
 [node name="Plane" type="StaticBody3D" parent="."]
 
