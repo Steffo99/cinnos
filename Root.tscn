@@ -180,7 +180,10 @@ script = ExtResource("8_auifr")
 target = NodePath("../Player")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.579826, -0.58827, -0.563685, 0.632141, -0.761305, 0.144266, -0.514003, -0.272679, 0.813294, 0, 0, 0)
+transform = Transform3D(0.886591, 0.349146, -0.303401, 0.462553, -0.669221, 0.581539, 0, -0.655927, -0.754824, 4.33804, 4.6698, -3.35676)
+light_color = Color(1, 1, 0.678431, 1)
+light_energy = 2.026
+shadow_enabled = true
 
 [node name="HouseC" parent="." instance=ExtResource("9_xyam4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9482, 0, -6.46428)
