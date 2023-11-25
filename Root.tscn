@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=13 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
-[ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
+[ext_resource type="Material" path="res://Unshaded.material" id="2_upp15"]
+[ext_resource type="Texture2D" uid="uid://bwiymy4ls5l8a" path="res://addons/kenney_prototype_textures/red/texture_05.png" id="3_gtnhv"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
 [ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="4_uubk4"]
 
@@ -17,12 +18,11 @@ size = Vector3(1, 0.1, 3)
 material = ExtResource("2_upp15")
 size = Vector3(1, 0.1, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1au4d"]
-shading_mode = 0
-albedo_color = Color(0, 0.541176, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkb30"]
+albedo_texture = ExtResource("3_gtnhv")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_opk07"]
-material = SubResource("StandardMaterial3D_1au4d")
+material = SubResource("StandardMaterial3D_lkb30")
 size = Vector2(200, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2bm1d"]
