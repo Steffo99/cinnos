@@ -84,6 +84,7 @@ grow_vertical = 2
 theme = SubResource("Theme_hkcet")
 
 [node name="TextBox" type="MarginContainer" parent="UI"]
+visible = false
 custom_minimum_size = Vector2(0, 192)
 layout_mode = 1
 anchors_preset = 12
