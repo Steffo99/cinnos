@@ -2,12 +2,12 @@ extends CharacterBody3D
 class_name Player
 
 
-@export var input_accel: float = 1.0
+@export var input_accel: float = 7.0
 @onready var current_input_accel = input_accel
 
 @onready var gravity_accel: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 @export var jump_impulse: Vector3 = Vector3.UP * 5;
-
+@export var friction: float = 0.8
 
 @export var max_jumps = 1
 @onready var current_jumps = max_jumps
@@ -44,6 +44,12 @@ func _physics_process(delta):
 	var input_change = input_dir * input_accel
 	velocity.x += input_change.x * delta
 	velocity.z += input_change.y * delta
+	
+	if is_on_floor():
+		velocity /= (1 + delta * friction)
+		
+		if velocity.length() < 0.3 and input_dir.is_zero_approx():
+			velocity *= 0
 
 	move_and_slide()
 	
@@ -58,4 +64,5 @@ func _physics_process(delta):
 		if collision.get_normal().y > collision_normal_max_y_for_floor:
 			continue
 		print("bonk")
+	
 	
