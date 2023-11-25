@@ -7,7 +7,6 @@
 size = Vector3(1.9188, 3.57475, 2.31203)
 
 [node name="Torretta" type="StaticBody3D"]
-transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, 0, 0, 0)
 script = ExtResource("1_wqejx")
 initial_cooldown = 0.5
 
@@ -17,5 +16,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09828, 0)
 shape = SubResource("BoxShape3D_hwxik")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]

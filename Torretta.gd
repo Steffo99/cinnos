@@ -7,7 +7,7 @@ extends StaticBody3D
 @export var rotation_speed = 0.1
 @export var initial_cooldown: float = 0.2
 
-var bullet = preload("res://obstacles/bullet.tscn")
+@export var bullet = preload("res://obstacles/bullet.tscn")
 var cooldown = 0
 
 # Called when the node enters the scene tree for the first time.

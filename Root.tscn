@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://mahsivqsy3oo" path="res://obstacles/panchina.tscn" id="18_ijdrl"]
 [ext_resource type="PackedScene" uid="uid://ca6gyhifgdnks" path="res://models/bar.glb" id="19_c0gkt"]
 [ext_resource type="PackedScene" uid="uid://c1p6udf66lht2" path="res://obstacles/bullet.tscn" id="19_fskgs"]
+[ext_resource type="PackedScene" uid="uid://c8ey6yaaj70kw" path="res://obstacles/bullet_ball.tscn" id="19_u5bb2"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
