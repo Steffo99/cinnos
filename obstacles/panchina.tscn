@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ci3oqjm7d6n5c" path="res://models/veci.glb" id="1_5rsr2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5q6jj"]
-size = Vector3(7.427, 3.83, 3.989)
+size = Vector3(7.427, 2.595, 3.989)
 
 [node name="Panchina" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9953, -1.41734, 0.942567)
