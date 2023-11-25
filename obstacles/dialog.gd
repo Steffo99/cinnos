@@ -8,4 +8,5 @@ extends Area3D
 
 
 func _on_body_entered(body):
-	textbox.display(text, duration)
+	if body is Player:
+		textbox.display(text, duration)
