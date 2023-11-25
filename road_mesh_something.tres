@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://2cuubqxj75u6" path="res://addons/asphalt.png" id="1_6yda2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30fli"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlayp"]
 albedo_texture = ExtResource("1_6yda2")
 
 [resource]
-material = SubResource("StandardMaterial3D_30fli")
+material = SubResource("StandardMaterial3D_vlayp")
