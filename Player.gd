@@ -6,7 +6,7 @@ class_name Player
 @onready var current_input_accel = input_accel
 
 @onready var gravity_accel: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * ProjectSettings.get_setting("physics/3d/default_gravity_vector")
-@export var jump_impulse: Vector3 = Vector3.UP;
+@export var jump_impulse: Vector3 = Vector3.UP * 5;
 
 
 @export var max_jumps = 1
