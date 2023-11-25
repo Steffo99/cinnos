@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=17 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
@@ -6,16 +6,19 @@
 [ext_resource type="FontFile" uid="uid://cseshyj4yw2f5" path="res://fonts/FiraSans-Medium.ttf" id="3_p3wyc"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
 [ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
-[ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="4_uubk4"]
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
+[ext_resource type="PackedScene" uid="uid://ck1im1d6yhv84" path="res://obstacles/house.tscn" id="8_ntqnl"]
+
+[sub_resource type="Theme" id="Theme_hkcet"]
+Label/fonts/font = ExtResource("3_p3wyc")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tn1wg"]
+size = Vector2(48, 48)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pnmjt"]
 material = ExtResource("2_upp15")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kpyw3"]
-size = Vector3(1, 0.1, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4tnse"]
 material = ExtResource("2_upp15")
@@ -31,48 +34,7 @@ size = Vector2(200, 200)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2bm1d"]
 size = Vector3(200, 4, 200)
 
-[sub_resource type="Theme" id="Theme_hkcet"]
-Label/fonts/font = ExtResource("3_p3wyc")
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tn1wg"]
-size = Vector2(48, 48)
-
 [node name="Root" type="Node3D"]
-
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927202, 0)
-script = ExtResource("1_wt4gx")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.919211, -0.23121, 0.318736, -4.92044e-09, 0.809458, 0.587178, -0.393765, -0.53974, 0.744063, 3.36228, 7.21007, 5.78625)
-
-[node name="Man" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
-shape = SubResource("CapsuleShape3D_castg")
-
-[node name="Mesh" type="MeshInstance3D" parent="Player/Man"]
-mesh = SubResource("CapsuleMesh_pnmjt")
-skeleton = NodePath("../..")
-
-[node name="Board" type="CollisionShape3D" parent="Player"]
-shape = SubResource("BoxShape3D_kpyw3")
-
-[node name="Mesh" type="MeshInstance3D" parent="Player/Board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-mesh = SubResource("BoxMesh_4tnse")
-skeleton = NodePath("../..")
-
-[node name="Plane" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Plane"]
-mesh = SubResource("PlaneMesh_opk07")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-shape = SubResource("BoxShape3D_2bm1d")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.955149, 0.296125, 0, -0.296125, 0.955149, 0, 2.66196, 3.33182)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -151,7 +113,48 @@ horizontal_alignment = 2
 [node name="GameTimer" type="Node" parent="UI/TimerBox/Label"]
 script = ExtResource("3_y362g")
 
-[node name="turret" parent="." instance=ExtResource("4_uubk4")]
-transform = Transform3D(-0.30538, 0, 0.952231, 0, 1, 0, -0.952231, 0, -0.30538, -0.219426, 0, -9.35718)
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927202, 0)
+script = ExtResource("1_wt4gx")
+input_accel = 8.0
+
+[node name="Man" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+shape = SubResource("CapsuleShape3D_castg")
+
+[node name="Mesh" type="MeshInstance3D" parent="Player/Man"]
+mesh = SubResource("CapsuleMesh_pnmjt")
+skeleton = NodePath("../..")
+
+[node name="Board" type="CollisionShape3D" parent="Player"]
+
+[node name="Mesh" type="MeshInstance3D" parent="Player/Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_4tnse")
+skeleton = NodePath("../..")
+
+[node name="Plane" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Plane"]
+mesh = SubResource("PlaneMesh_opk07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_2bm1d")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.582109, 0.813111, 0, -0.813111, 0.582109, 0, 14.3066, 11.1673)
+
+[node name="House" parent="." instance=ExtResource("8_ntqnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -11)
+
+[node name="House2" parent="." instance=ExtResource("8_ntqnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.36658, 0, 13.6653)
+
+[node name="House3" parent="." instance=ExtResource("8_ntqnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9757, 0, -2.54637)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.579826, -0.58827, -0.563685, 0.632141, -0.761305, 0.144266, -0.514003, -0.272679, 0.813294, 0, 0, 0)
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]

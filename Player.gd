@@ -45,7 +45,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	rotation.y = velocity.normalized().signed_angle_to(Vector3.FORWARD, Vector3.DOWN)
+	rotation.y = input_dir.normalized().angle_to(Vector2.UP)
 	
 	# Gestisci collisioni
 	for collision_idx in range(get_slide_collision_count()):
