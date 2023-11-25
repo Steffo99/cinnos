@@ -33,6 +33,9 @@ size = Vector3(200, 4, 200)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927202, 0)
 script = ExtResource("1_wt4gx")
 
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.919211, -0.23121, 0.318736, -4.92044e-09, 0.809458, 0.587178, -0.393765, -0.53974, 0.744063, 3.36228, 7.21007, 5.78625)
+
 [node name="Man" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
 shape = SubResource("CapsuleShape3D_castg")
@@ -57,9 +60,6 @@ mesh = SubResource("PlaneMesh_opk07")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = SubResource("BoxShape3D_2bm1d")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.955149, 0.296125, 0, -0.296125, 0.955149, 0, 2.66196, 3.33182)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
