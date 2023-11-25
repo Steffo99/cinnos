@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp7p16vtxd1xr"]
+[gd_scene load_steps=3 format=3 uid="uid://bxj354o6rycsf"]
 
 [ext_resource type="PackedScene" uid="uid://01cg0ph8uglg" path="res://models/house3.glb" id="1_7obe1"]
 
@@ -7,7 +7,7 @@
 [node name="HouseC" type="StaticBody3D"]
 
 [node name="house3" parent="." instance=ExtResource("1_7obe1")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(8, 0, 0, 0, 10, 0, 0, 0, 8, 0, 5, 0)
