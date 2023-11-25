@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
-[ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
+[ext_resource type="Material" path="res://Unshaded.material" id="2_upp15"]
 [ext_resource type="Texture2D" uid="uid://uogmi4pvp64t" path="res://addons/bisio.png" id="3_27tel"]
 [ext_resource type="Texture2D" uid="uid://bwiymy4ls5l8a" path="res://addons/kenney_prototype_textures/red/texture_05.png" id="3_gtnhv"]
 [ext_resource type="FontFile" uid="uid://cseshyj4yw2f5" path="res://fonts/FiraSans-Medium.ttf" id="3_p3wyc"]
@@ -10,8 +10,8 @@
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
 [ext_resource type="PackedScene" uid="uid://4i2c481rpxe3" path="res://models/cinno.glb" id="8_32hx2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
-[ext_resource type="PackedScene" uid="uid://dp7p16vtxd1xr" path="res://obstacles/house_c.tscn" id="9_xyam4"]
-[ext_resource type="PackedScene" uid="uid://ccs202pcy4pce" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
+[ext_resource type="PackedScene" path="res://obstacles/house_c.tscn" id="9_xyam4"]
+[ext_resource type="PackedScene" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
 [ext_resource type="Script" path="res://Buccia.gd" id="12_7dfpx"]
 [ext_resource type="PackedScene" uid="uid://72q4p7x8l08y" path="res://models/banana.glb" id="13_ecp45"]
 
@@ -210,7 +210,7 @@ text = "tre"
 duration = 1.0
 
 [node name="Buccia" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.41567, 0, -6.54346)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.76751, 1.11292, -6.57832)
 script = ExtResource("12_7dfpx")
 
 [node name="banana" parent="Buccia" instance=ExtResource("13_ecp45")]
