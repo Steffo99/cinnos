@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=27 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" path="res://Unshaded.material" id="2_upp15"]
@@ -10,10 +10,12 @@
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
 [ext_resource type="PackedScene" uid="uid://4i2c481rpxe3" path="res://models/cinno.glb" id="8_32hx2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
-[ext_resource type="PackedScene" path="res://obstacles/house_c.tscn" id="9_xyam4"]
+[ext_resource type="PackedScene" uid="uid://bxj354o6rycsf" path="res://obstacles/house_c.tscn" id="9_xyam4"]
 [ext_resource type="PackedScene" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
 [ext_resource type="Script" path="res://Buccia.gd" id="12_7dfpx"]
 [ext_resource type="PackedScene" uid="uid://72q4p7x8l08y" path="res://models/banana.glb" id="13_ecp45"]
+[ext_resource type="Script" path="res://Torretta.gd" id="15_058li"]
+[ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="16_upw73"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
@@ -44,6 +46,9 @@ size = Vector3(200, 4, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p1ebg"]
 size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hwxik"]
+size = Vector3(1.9188, 3.57475, 2.31203)
 
 [node name="Root" type="Node3D"]
 
@@ -134,6 +139,7 @@ script = ExtResource("3_y362g")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927202, 0)
+collision_layer = 5
 script = ExtResource("1_wt4gx")
 input_accel = 8.0
 jump_impulse = Vector3(0, 10, 0)
@@ -166,6 +172,8 @@ mesh = SubResource("BoxMesh_4tnse")
 skeleton = NodePath("../..")
 
 [node name="Plane" type="StaticBody3D" parent="."]
+collision_layer = 5
+collision_mask = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Plane"]
 mesh = SubResource("PlaneMesh_opk07")
@@ -187,15 +195,19 @@ shadow_enabled = true
 
 [node name="HouseC" parent="." instance=ExtResource("9_xyam4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9482, 0, -6.46428)
+collision_layer = 5
 
 [node name="HouseC2" parent="." instance=ExtResource("9_xyam4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94815, 0, 15.5357)
+collision_layer = 5
 
 [node name="HouseC3" parent="." instance=ExtResource("9_xyam4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0518, 0, -18.4643)
+collision_layer = 5
 
 [node name="HouseC4" parent="." instance=ExtResource("9_xyam4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0518, 0, 8.53572)
+collision_layer = 5
 
 [node name="Dialog" parent="." instance=ExtResource("10_6ihn6")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -7)
@@ -251,6 +263,18 @@ script = ExtResource("12_7dfpx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buccia4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("BoxShape3D_p1ebg")
+
+[node name="Torretta" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -11.1919, 0.928251, 6.08668)
+script = ExtResource("15_058li")
+
+[node name="turret" parent="Torretta" instance=ExtResource("16_upw73")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Torretta"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 1.09828, 0)
+shape = SubResource("BoxShape3D_hwxik")
+
+[node name="RayCast3D" type="RayCast3D" parent="Torretta"]
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Buccia" to="Buccia" method="_on_body_entered"]
