@@ -1,5 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=25 format=3 uid="uid://4whij2hmts0t"]
 
+[ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
+[ext_resource type="Material" path="res://Unshaded.material" id="2_upp15"]
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
 [ext_resource type="Texture2D" uid="uid://uogmi4pvp64t" path="res://addons/bisio.png" id="3_27tel"]
@@ -9,6 +11,8 @@
 [ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
+[ext_resource type="PackedScene" uid="uid://ck1im1d6yhv84" path="res://obstacles/house.tscn" id="8_ntqnl"]
+[ext_resource type="Script" path="res://Buccia.gd" id="10_ffcw5"]
 [ext_resource type="PackedScene" uid="uid://dp7p16vtxd1xr" path="res://obstacles/house_c.tscn" id="9_xyam4"]
 [ext_resource type="PackedScene" uid="uid://ccs202pcy4pce" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
 
@@ -41,6 +45,15 @@ size = Vector2(200, 200)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2bm1d"]
 size = Vector3(200, 4, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_stil7"]
+size = Vector3(0.976957, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_icp2k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hs2tx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n8jcf"]
 
 [node name="Root" type="Node3D"]
 
@@ -180,6 +193,19 @@ target = NodePath("../Player")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.579826, -0.58827, -0.563685, 0.632141, -0.761305, 0.144266, -0.514003, -0.272679, 0.813294, 0, 0, 0)
 
+[node name="Buccia" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.36238, 0.418784, -3.1441)
+script = ExtResource("10_ffcw5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buccia"]
+shape = SubResource("BoxShape3D_stil7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Buccia/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_icp2k")
+material_overlay = SubResource("StandardMaterial3D_hs2tx")
+mesh = SubResource("BoxMesh_n8jcf")
+skeleton = NodePath("../..")
+
 [node name="HouseC" parent="." instance=ExtResource("9_xyam4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9482, 0, -6.46428)
 
@@ -206,5 +232,7 @@ duration = 1.0
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -25)
 text = "tre"
 duration = 1.0
+>>>>>>> 4e66fbe9af34678e24d9fbad2b46ae8ad17981eb
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Buccia" to="Buccia" method="_on_body_entered"]
