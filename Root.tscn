@@ -1,22 +1,37 @@
-[gd_scene load_steps=13 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=20 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
-[ext_resource type="Material" path="res://Unshaded.material" id="2_upp15"]
+[ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
 [ext_resource type="Texture2D" uid="uid://bwiymy4ls5l8a" path="res://addons/kenney_prototype_textures/red/texture_05.png" id="3_gtnhv"]
+[ext_resource type="FontFile" uid="uid://cseshyj4yw2f5" path="res://fonts/FiraSans-Medium.ttf" id="3_p3wyc"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
-[ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="4_uubk4"]
+[ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
+[ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
+[ext_resource type="PackedScene" uid="uid://ck1im1d6yhv84" path="res://obstacles/house.tscn" id="8_ntqnl"]
+
+[sub_resource type="Theme" id="Theme_hkcet"]
+Label/fonts/font = ExtResource("3_p3wyc")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tn1wg"]
+size = Vector2(48, 48)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pnmjt"]
 material = ExtResource("2_upp15")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kpyw3"]
-size = Vector3(1, 0.1, 3)
-
 [sub_resource type="BoxMesh" id="BoxMesh_4tnse"]
 material = ExtResource("2_upp15")
 size = Vector3(1, 0.1, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lw6u7"]
+shading_mode = 0
+albedo_color = Color(0.435294, 0.615686, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ry4bk"]
+material = SubResource("StandardMaterial3D_lw6u7")
+size = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkb30"]
 albedo_texture = ExtResource("3_gtnhv")
@@ -30,12 +45,88 @@ size = Vector3(200, 4, 200)
 
 [node name="Root" type="Node3D"]
 
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hkcet")
+
+[node name="TextBox" type="MarginContainer" parent="UI"]
+visible = false
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 16
+script = ExtResource("4_gpkq6")
+
+[node name="Panel" type="Panel" parent="UI/TextBox"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TextBox/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Character" type="TextureRect" parent="UI/TextBox/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("PlaceholderTexture2D_tn1wg")
+expand_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/TextBox/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]garasauto[/center]"
+
+[node name="Timer" type="Timer" parent="UI/TextBox"]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimerBox" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -81.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="UI/TimerBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_yvnu2")
+theme_override_font_sizes/font_size = 32
+text = "Garasauto"
+horizontal_alignment = 2
+
+[node name="GameTimer" type="Node" parent="UI/TimerBox/Label"]
+script = ExtResource("3_y362g")
+
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927202, 0)
 script = ExtResource("1_wt4gx")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.919211, -0.23121, 0.318736, -4.92044e-09, 0.809458, 0.587178, -0.393765, -0.53974, 0.744063, 3.36228, 7.21007, 5.78625)
+input_accel = 8.0
+friction = 0.99
 
 [node name="Man" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
@@ -45,13 +136,24 @@ shape = SubResource("CapsuleShape3D_castg")
 mesh = SubResource("CapsuleMesh_pnmjt")
 skeleton = NodePath("../..")
 
-[node name="Board" type="CollisionShape3D" parent="Player"]
-shape = SubResource("BoxShape3D_kpyw3")
+[node name="Board" type="Node3D" parent="Player"]
 
 [node name="Mesh" type="MeshInstance3D" parent="Player/Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 mesh = SubResource("BoxMesh_4tnse")
 skeleton = NodePath("../..")
+
+[node name="PlayerPart" type="CPUParticles3D" parent="Player/Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+emitting = false
+amount = 30
+mesh = SubResource("BoxMesh_ry4bk")
+direction = Vector3(0, 0, 1)
+spread = 35.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
 
 [node name="Plane" type="StaticBody3D" parent="."]
 
@@ -62,28 +164,21 @@ mesh = SubResource("PlaneMesh_opk07")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = SubResource("BoxShape3D_2bm1d")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.582109, 0.813111, 0, -0.813111, 0.582109, 0, 14.3066, 11.1673)
+script = ExtResource("8_auifr")
+target = NodePath("../Player")
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -81.0
-offset_bottom = 26.0
-grow_horizontal = 0
-text = "Garasauto"
-horizontal_alignment = 2
+[node name="House" parent="." instance=ExtResource("8_ntqnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -11)
 
-[node name="GameTimer" type="Node" parent="Control/Label"]
-script = ExtResource("3_y362g")
+[node name="House2" parent="." instance=ExtResource("8_ntqnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.36658, 0, 13.6653)
 
-[node name="turret" parent="." instance=ExtResource("4_uubk4")]
-transform = Transform3D(-0.30538, 0, 0.952231, 0, 1, 0, -0.952231, 0, -0.30538, -0.219426, 0, -9.35718)
+[node name="House3" parent="." instance=ExtResource("8_ntqnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9757, 0, -2.54637)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.579826, -0.58827, -0.563685, 0.632141, -0.761305, 0.144266, -0.514003, -0.272679, 0.813294, 0, 0, 0)
+
+[connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
