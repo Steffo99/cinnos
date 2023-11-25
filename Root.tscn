@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=29 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
@@ -11,14 +11,12 @@
 [ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
 [ext_resource type="Texture2D" uid="uid://ct6sngef76p35" path="res://addons/grass.png" id="9_i8cb1"]
 [ext_resource type="PackedScene" uid="uid://bxj354o6rycsf" path="res://obstacles/house_c.tscn" id="9_xyam4"]
-[ext_resource type="PackedScene" uid="uid://ccs202pcy4pce" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
 [ext_resource type="PlaneMesh" uid="uid://jy4q18wf2j41" path="res://road_mesh_something.tres" id="10_7jwjs"]
 [ext_resource type="Texture2D" uid="uid://bx05lcriqc602" path="res://addons/asphalt_blank.png" id="11_kxmgb"]
-[ext_resource type="PackedScene" uid="uid://d3ikq1a6muafo" path="res://obstacles/goal_billboard.tscn" id="14_0ikhl"]
-[ext_resource type="PackedScene" uid="uid://crbal5m8uhcd5" path="res://obstacles/vent.tscn" id="15_hwvsi"]
-[ext_resource type="PackedScene" uid="uid://cbmkrd5kwiujt" path="res://obstacles/torretta.tscn" id="17_6hms3"]
-[ext_resource type="PackedScene" uid="uid://mahsivqsy3oo" path="res://obstacles/panchina.tscn" id="18_ijdrl"]
-[ext_resource type="PackedScene" uid="uid://c1p6udf66lht2" path="res://obstacles/bullet.tscn" id="19_fskgs"]
+[ext_resource type="PackedScene" uid="uid://b03t3lbwlddqm" path="res://obstacles/house_a.tscn" id="13_csk8r"]
+[ext_resource type="PackedScene" uid="uid://blc38wif555cb" path="res://obstacles/house_b.tscn" id="14_0dds1"]
+[ext_resource type="PackedScene" uid="uid://bmbb6bg5r0ply" path="res://obstacles/house_bar.tscn" id="16_6jdi5"]
+[ext_resource type="PackedScene" uid="uid://ccs202pcy4pce" path="res://obstacles/dialog.tscn" id="17_4mwab"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
@@ -160,7 +158,7 @@ horizontal_alignment = 2
 script = ExtResource("3_y362g")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927202, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5331, 0.927202, 7.01927)
 collision_layer = 5
 script = ExtResource("1_wt4gx")
 input_accel = 8.0
@@ -193,6 +191,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 mesh = SubResource("BoxMesh_4tnse")
 skeleton = NodePath("../..")
 
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 10.5331, 21.3066, 25.1866)
+script = ExtResource("8_auifr")
+target = NodePath("../Player")
+
 [node name="Plane" type="StaticBody3D" parent="."]
 collision_layer = 5
 collision_mask = 5
@@ -207,13 +210,8 @@ mesh_library = SubResource("MeshLibrary_hklma")
 cell_size = Vector3(16, 2, 16)
 cell_scale = 8.0
 data = {
-"cells": PackedInt32Array(65535, 65533, 1048576, 0, 65533, 1048576, 1, 65533, 1048576, 2, 65533, 1048576, 65534, 65533, 1048576, 65533, 65533, 1048576, 65532, 65534, 1048576, 65533, 65534, 1048576, 65533, 65535, 1048577, 65534, 0, 1048576, 65535, 0, 1048576, 0, 0, 1048576, 1, 0, 1048576, 2, 65535, 1048576, 2, 65534, 1048576, 1, 65532, 1048576, 0, 65532, 1048576, 65535, 65532, 1048576, 65532, 0, 1048576, 65532, 2, 1048576, 65533, 3, 1048576, 65534, 4, 1048576, 65535, 4, 1048576, 0, 3, 1048576, 2, 2, 1048576, 2, 0, 1048576, 65535, 65534, 1048576, 65533, 2, 1048576, 65534, 3, 1048576, 65534, 2, 1048576, 65535, 2, 1048576, 0, 65535, 1048576, 65534, 65534, 1048576, 65533, 0, 1048576, 65534, 1, 1048576, 0, 1, 1048576, 0, 65534, 1048576, 0, 2, 1048576, 1, 2, 1048576, 1, 1, 1048576, 1, 65535, 1048576, 1, 65534, 1048576, 65535, 3, 1048576, 65535, 65535, 1048576, 65535, 1, 1048576, 65534, 65535, 1048576, 65532, 65535, 1048577, 65532, 1, 1048577, 0, 4, 1048576, 1, 4, 1048576, 2, 3, 1048576, 3, 2, 1048576, 3, 1, 1048576, 3, 0, 1048576, 3, 65535, 1048576, 65531, 65535, 1048577, 65531, 0, 1048576, 65531, 1, 1048577, 65531, 2, 1048576, 1, 3, 1048576, 65532, 65533, 1048576, 2, 1, 1048576, 65533, 1, 1048577, 65531, 65533, 1048576, 65530, 65534, 1048576, 65529, 65535, 1048577, 65529, 0, 1048576, 65529, 1, 1048577, 65530, 2, 1048576, 65534, 65532, 1048576, 65533, 65532, 1048576, 65528, 0, 1048576, 65528, 1, 1048577, 65529, 2, 1048576, 65531, 65534, 1048576, 65530, 65535, 1048577, 65530, 0, 1048576, 65530, 1, 1048577, 65530, 65533, 1048576, 65529, 65534, 1048576, 65528, 2, 1048576, 65528, 3, 1048576, 65532, 65532, 1048576, 65531, 65532, 1048576, 65529, 65533, 1048576, 65528, 65534, 1048576, 65528, 65535, 1048577)
+"cells": PackedInt32Array(65535, 0, 3, 0, 0, 3, 0, 65535, 3, 65535, 65535, 3, 1, 65535, 3, 0, 1, 3, 65535, 1, 3, 1, 0, 3, 1, 1, 3, 65534, 65534, 0, 65534, 65535, 0, 65534, 0, 0, 65534, 1, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 2, 1, 0, 2, 0, 0, 3, 65535, 0, 3, 65534, 0, 2, 65534, 0, 2, 65535, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 2, 3, 0, 3, 3, 0, 1, 3, 1441792, 0, 3, 1441792, 65535, 3, 1441792, 65534, 3, 1441792, 65533, 3, 1441792, 65533, 2, 1441792, 65533, 1, 1441792, 65533, 0, 1441792, 65533, 65535, 1441792, 65533, 65534, 1441792, 65534, 65533, 1441792, 65533, 65533, 1441792, 2, 65533, 1441792, 3, 65533, 1441792, 1, 65533, 1441792, 1, 65534, 1441792, 65535, 65533, 1441792, 65535, 65534, 1441792, 0, 65534, 655361, 0, 65533, 655361, 0, 65532, 655361)
 }
-
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 21.3066, 18.1673)
-script = ExtResource("8_auifr")
-target = NodePath("../Player")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.886591, 0.349146, -0.303401, 0.462553, -0.669221, 0.581539, 0, -0.655927, -0.754824, 4.33804, 4.6698, -3.35676)
@@ -221,48 +219,43 @@ light_color = Color(1, 1, 0.678431, 1)
 light_energy = 2.026
 shadow_enabled = true
 
-[node name="HouseC" parent="." instance=ExtResource("9_xyam4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9482, 0, -6.46428)
-collision_layer = 5
+[node name="HouseA" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51074, 0, -17.4926)
+
+[node name="HouseA2" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22636, 0, 32.7371)
+
+[node name="HouseA3" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4682, 0, 29.0021)
+
+[node name="HouseA5" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.56, 0, 17.4854)
+
+[node name="HouseA6" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5693, 0, -4.02066)
+
+[node name="HouseA7" parent="." instance=ExtResource("13_csk8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1005, 0, -18.3739)
+
+[node name="HouseB" parent="." instance=ExtResource("14_0dds1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0695, 0, 6.50642)
+
+[node name="HouseB2" parent="." instance=ExtResource("14_0dds1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.127, 0, 29.616)
+
+[node name="HouseB4" parent="." instance=ExtResource("14_0dds1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4779, 0.0626392, 33.5963)
+
+[node name="HouseB5" parent="." instance=ExtResource("14_0dds1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39686, 0.0626373, 29.6272)
 
 [node name="HouseC2" parent="." instance=ExtResource("9_xyam4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94815, 0, 15.5357)
-collision_layer = 5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3194, 0, -8.07867)
 
-[node name="HouseC3" parent="." instance=ExtResource("9_xyam4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0518, 0, -18.4643)
-collision_layer = 5
+[node name="HouseC3" parent="." instance=ExtResource("16_6jdi5")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -15.3808, 0.0601921, 13.8544)
 
-[node name="HouseC4" parent="." instance=ExtResource("9_xyam4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0518, 0, 8.53572)
-collision_layer = 5
-
-[node name="Dialog" parent="." instance=ExtResource("10_6ihn6")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -7)
-text = "uno"
-duration = 1.0
-
-[node name="GoalBillboard" parent="Dialog" instance=ExtResource("14_0ikhl")]
-
-[node name="Dialog2" parent="." instance=ExtResource("10_6ihn6")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -16)
-text = "due"
-duration = 1.0
-
-[node name="Dialog3" parent="." instance=ExtResource("10_6ihn6")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -25)
-text = "tre"
-duration = 1.0
-
-[node name="Vent" parent="." instance=ExtResource("15_hwvsi")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2.89718, 0, 8.66797)
-
-[node name="Panchina" parent="." instance=ExtResource("18_ijdrl")]
-
-[node name="Torretta" parent="." instance=ExtResource("17_6hms3")]
-transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -5.62694, 0, -13.6183)
-
-[node name="Bullet" parent="." instance=ExtResource("19_fskgs")]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -11.0235, 0, 14.2821)
+[node name="Dialog" parent="." instance=ExtResource("17_4mwab")]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 10.6853, 3.88309, 3.3955)
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]

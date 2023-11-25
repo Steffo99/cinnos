@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmbb6bg5r0ply"]
+
+[ext_resource type="PackedScene" uid="uid://ca6gyhifgdnks" path="res://models/bar.glb" id="1_he1q1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_atvc4"]
+
+[node name="HouseC" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(8, 0, 0, 0, 10, 0, 0, 0, 8, 0, 5, 0)
+shape = SubResource("BoxShape3D_atvc4")
+
+[node name="bar" parent="." instance=ExtResource("1_he1q1")]
