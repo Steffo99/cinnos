@@ -44,17 +44,14 @@ func _physics_process(delta):
 	var input_change = input_dir * input_accel
 	velocity.x += input_change.x * delta
 	velocity.z += input_change.y * delta
-	
-	if is_on_floor():
-		velocity /= (1 + delta * friction)
-		
-		if velocity.length() < 0.3 and input_dir.is_zero_approx():
-			velocity *= 0
 
 	move_and_slide()
 	
 	if input_dir.length() > 0.01:
 		last_direction = input_dir
+		$Board/PlayerPart.emitting = true
+	else:
+		$Board/PlayerPart.emitting = false
 
 	rotation.y = last_direction.normalized().angle_to(Vector2.UP)
 	
