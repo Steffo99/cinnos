@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=16 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
 [ext_resource type="FontFile" uid="uid://cseshyj4yw2f5" path="res://fonts/FiraSans-Medium.ttf" id="3_p3wyc"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
+[ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
+[ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
 
@@ -91,6 +93,7 @@ theme_override_constants/margin_left = 128
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 128
 theme_override_constants/margin_bottom = 16
+script = ExtResource("4_gpkq6")
 
 [node name="Panel" type="Panel" parent="UI/TextBox"]
 layout_mode = 2
@@ -116,6 +119,10 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]garasauto[/center]"
 
+[node name="Timer" type="Timer" parent="UI/TextBox"]
+wait_time = 5.0
+one_shot = true
+
 [node name="TimerBox" type="MarginContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 1
@@ -131,8 +138,12 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Label" type="Label" parent="UI/TimerBox"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_yvnu2")
+theme_override_font_sizes/font_size = 32
 text = "Garasauto"
 horizontal_alignment = 2
 
 [node name="GameTimer" type="Node" parent="UI/TimerBox/Label"]
 script = ExtResource("3_y362g")
+
+[connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
