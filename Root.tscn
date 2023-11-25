@@ -1,10 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=31 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
 [ext_resource type="Texture2D" uid="uid://dw80e5ieh0upb" path="res://addons/bisio.png" id="3_27tel"]
-[ext_resource type="Material" path="res://Unshaded.material" id="2_upp15"]
-[ext_resource type="Texture2D" uid="uid://uogmi4pvp64t" path="res://addons/bisio.png" id="3_27tel"]
 [ext_resource type="FontFile" uid="uid://cseshyj4yw2f5" path="res://fonts/FiraSans-Medium.ttf" id="3_p3wyc"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
 [ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
@@ -17,16 +15,9 @@
 [ext_resource type="PlaneMesh" uid="uid://by8t4bly4lrhj" path="res://road_mesh_something.tres" id="10_7jwjs"]
 [ext_resource type="Texture2D" uid="uid://bx05lcriqc602" path="res://addons/asphalt_blank.png" id="11_kxmgb"]
 [ext_resource type="PackedScene" path="res://obstacles/goal_billboard.tscn" id="14_0ikhl"]
-[ext_resource type="Script" path="res://Torretta.gd" id="15_058li"]
 [ext_resource type="PackedScene" path="res://obstacles/vent.tscn" id="15_hwvsi"]
-[ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="16_upw73"]
-[ext_resource type="PackedScene" uid="uid://ca6gyhifgdnks" path="res://models/bar.glb" id="19_c0gkt"]
-[ext_resource type="PlaneMesh" uid="uid://jy4q18wf2j41" path="res://road_mesh_something.tres" id="10_7jwjs"]
-[ext_resource type="Texture2D" uid="uid://bx05lcriqc602" path="res://addons/asphalt_blank.png" id="11_kxmgb"]
-[ext_resource type="PackedScene" path="res://obstacles/goal_billboard.tscn" id="14_0ikhl"]
-[ext_resource type="PackedScene" path="res://obstacles/vent.tscn" id="15_hwvsi"]
-[ext_resource type="PackedScene" uid="uid://cbmkrd5kwiujt" path="res://obstacles/torretta.tscn" id="17_6hms3"]
 [ext_resource type="PackedScene" uid="uid://mahsivqsy3oo" path="res://obstacles/panchina.tscn" id="18_ijdrl"]
+[ext_resource type="PackedScene" uid="uid://ca6gyhifgdnks" path="res://models/bar.glb" id="19_c0gkt"]
 [ext_resource type="PackedScene" uid="uid://c1p6udf66lht2" path="res://obstacles/bullet.tscn" id="19_fskgs"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
@@ -268,13 +259,7 @@ duration = 1.0
 [node name="Vent" parent="." instance=ExtResource("15_hwvsi")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 168.103, 0, 8.66797)
 
-[node name="Torretta" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, 479.543, 0.928251, 317.357)
-script = ExtResource("15_058li")
 [node name="Panchina" parent="." instance=ExtResource("18_ijdrl")]
-
-[node name="Torretta" parent="." instance=ExtResource("17_6hms3")]
-transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -5.62694, 0, -13.6183)
 
 [node name="Bullet" parent="." instance=ExtResource("19_fskgs")]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -11.0235, 0, 14.2821)
