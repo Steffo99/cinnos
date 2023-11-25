@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=12 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
+[ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="4_uubk4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
 
@@ -83,3 +84,6 @@ horizontal_alignment = 2
 
 [node name="GameTimer" type="Node" parent="Control/Label"]
 script = ExtResource("3_y362g")
+
+[node name="turret" parent="." instance=ExtResource("4_uubk4")]
+transform = Transform3D(-0.30538, 0, 0.952231, 0, 1, 0, -0.952231, 0, -0.30538, -0.219426, 0, -9.35718)
