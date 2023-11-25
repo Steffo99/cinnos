@@ -12,13 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://ct6sngef76p35" path="res://addons/grass.png" id="9_i8cb1"]
 [ext_resource type="PackedScene" uid="uid://bxj354o6rycsf" path="res://obstacles/house_c.tscn" id="9_xyam4"]
 [ext_resource type="PackedScene" uid="uid://ccs202pcy4pce" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
-[ext_resource type="PlaneMesh" uid="uid://jy4q18wf2j41" uid="uid://jy4q18wf2j41" path="res://road_mesh_something.tres" id="10_7jwjs"]
+[ext_resource type="PlaneMesh" uid="uid://jy4q18wf2j41" path="res://road_mesh_something.tres" id="10_7jwjs"]
 [ext_resource type="Texture2D" uid="uid://bx05lcriqc602" path="res://addons/asphalt_blank.png" id="11_kxmgb"]
 [ext_resource type="PackedScene" uid="uid://d3ikq1a6muafo" path="res://obstacles/goal_billboard.tscn" id="14_0ikhl"]
-[ext_resource type="Script" path="res://Torretta.gd" id="15_058li"]
 [ext_resource type="PackedScene" uid="uid://crbal5m8uhcd5" path="res://obstacles/vent.tscn" id="15_hwvsi"]
-[ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="16_upw73"]
-[ext_resource type="PackedScene" uid="uid://mahsivqsy3oo" path="res://panchina.tscn" id="18_ijdrl"]
+[ext_resource type="PackedScene" uid="uid://cbmkrd5kwiujt" path="res://obstacles/torretta.tscn" id="17_6hms3"]
+[ext_resource type="PackedScene" uid="uid://mahsivqsy3oo" path="res://obstacles/panchina.tscn" id="18_ijdrl"]
+[ext_resource type="PackedScene" uid="uid://c1p6udf66lht2" path="res://obstacles/bullet.tscn" id="19_fskgs"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
@@ -71,9 +71,6 @@ item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/shapes = []
 item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/navigation_layers = 1
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hwxik"]
-size = Vector3(1.9188, 3.57475, 2.31203)
 
 [node name="Root" type="Node3D"]
 
@@ -260,18 +257,12 @@ duration = 1.0
 [node name="Vent" parent="." instance=ExtResource("15_hwvsi")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2.89718, 0, 8.66797)
 
-[node name="Torretta" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -11.1919, 0.928251, 6.08668)
-script = ExtResource("15_058li")
-
-[node name="turret" parent="Torretta" instance=ExtResource("16_upw73")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Torretta"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 1.09828, 0)
-shape = SubResource("BoxShape3D_hwxik")
-
-[node name="RayCast3D" type="RayCast3D" parent="Torretta"]
-
 [node name="Panchina" parent="." instance=ExtResource("18_ijdrl")]
+
+[node name="Torretta" parent="." instance=ExtResource("17_6hms3")]
+transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -5.62694, 0, -13.6183)
+
+[node name="Bullet" parent="." instance=ExtResource("19_fskgs")]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -11.0235, 0, 14.2821)
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]

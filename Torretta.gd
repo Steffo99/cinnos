@@ -5,7 +5,7 @@ extends StaticBody3D
 
 @export var max_distance: float = 30.0
 @export var rotation_speed = 0.1
-@export var initial_cooldown: float = 0.1
+@export var initial_cooldown: float = 0.2
 
 var bullet = preload("res://obstacles/bullet.tscn")
 var cooldown = 0
@@ -26,7 +26,6 @@ func _physics_process(delta):
 		cooldown -= delta
 	else:
 		var bull = bullet.instantiate()
-		bull.global_position = global_position
 		
 		var diff_x = player.global_position.x - global_position.x
 		var diff_z = player.global_position.z - global_position.z
@@ -34,9 +33,12 @@ func _physics_process(delta):
 		var diff = Vector3(diff_x, 0, diff_z)
 		var norm = diff.normalized()
 		
+		bull.position = global_position
 		bull.set_linear_velocity(norm * 50)
+		bull.rotation.y = diff.signed_angle_to(Vector3.FORWARD, Vector3.DOWN)
 		
-		get_tree().root.add_child(bull)
+		get_tree().root.find_child("Root", true, false).add_child(bull)
+		
 		cooldown = initial_cooldown
 		
 	
