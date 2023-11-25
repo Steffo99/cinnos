@@ -3,24 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://72q4p7x8l08y"
-path="res://.godot/imported/banana.glb-19dba9f467c52208a261d869c3fa5d32.scn"
+uid="uid://ci3oqjm7d6n5c"
+path="res://.godot/imported/veci.glb-28b44f73a9a0465393ec90d9af6d7f1c.scn"
 
 [deps]
 
-source_file="res://models/banana.glb"
-dest_files=["res://.godot/imported/banana.glb-19dba9f467c52208a261d869c3fa5d32.scn"]
+source_file="res://models/veci.glb"
+dest_files=["res://.godot/imported/veci.glb-28b44f73a9a0465393ec90d9af6d7f1c.scn"]
 
 [params]
 
 nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
-<<<<<<< HEAD
 nodes/root_scale=1.0
-=======
-nodes/root_scale=0.15
->>>>>>> b35d2f377cd4ca3253360662fa3b1b6f890ffdf3
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true

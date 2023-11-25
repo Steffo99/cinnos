@@ -1,20 +1,21 @@
-[gd_scene load_steps=27 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=28 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" path="res://Unshaded.material" id="2_upp15"]
 [ext_resource type="Texture2D" uid="uid://uogmi4pvp64t" path="res://addons/bisio.png" id="3_27tel"]
-[ext_resource type="Texture2D" uid="uid://bwiymy4ls5l8a" path="res://addons/kenney_prototype_textures/red/texture_05.png" id="3_gtnhv"]
 [ext_resource type="FontFile" uid="uid://cseshyj4yw2f5" path="res://fonts/FiraSans-Medium.ttf" id="3_p3wyc"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
 [ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
 [ext_resource type="PackedScene" uid="uid://4i2c481rpxe3" path="res://models/cinno.glb" id="8_32hx2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
+[ext_resource type="Texture2D" uid="uid://ct6sngef76p35" path="res://addons/grass.png" id="9_i8cb1"]
 [ext_resource type="PackedScene" uid="uid://bxj354o6rycsf" path="res://obstacles/house_c.tscn" id="9_xyam4"]
 [ext_resource type="PackedScene" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
-[ext_resource type="Script" path="res://Buccia.gd" id="12_7dfpx"]
-[ext_resource type="PackedScene" uid="uid://72q4p7x8l08y" path="res://models/banana.glb" id="13_ecp45"]
+[ext_resource type="PlaneMesh" path="res://road_mesh_something.tres" id="10_7jwjs"]
+[ext_resource type="PackedScene" path="res://obstacles/goal_billboard.tscn" id="14_0ikhl"]
 [ext_resource type="Script" path="res://Torretta.gd" id="15_058li"]
+[ext_resource type="PackedScene" path="res://models/vent.tscn" id="15_hwvsi"]
 [ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="16_upw73"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
@@ -34,18 +35,28 @@ size = Vector3(0.3, 0.3, 0.3)
 material = ExtResource("2_upp15")
 size = Vector3(1, 0.1, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkb30"]
-albedo_texture = ExtResource("3_gtnhv")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_opk07"]
-material = SubResource("StandardMaterial3D_lkb30")
-size = Vector2(200, 200)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2bm1d"]
-size = Vector3(200, 4, 200)
+size = Vector3(100000, 4, 100000)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_p1ebg"]
-size = Vector3(1.5, 1.5, 1.5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ox173"]
+albedo_texture = ExtResource("9_i8cb1")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jacs4"]
+material = SubResource("StandardMaterial3D_ox173")
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_hklma"]
+item/0/name = "Grass"
+item/0/mesh = SubResource("PlaneMesh_jacs4")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "AsphaltV"
+item/1/mesh = ExtResource("10_7jwjs")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hwxik"]
 size = Vector3(1.9188, 3.57475, 2.31203)
@@ -175,12 +186,18 @@ skeleton = NodePath("../..")
 collision_layer = 5
 collision_mask = 5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Plane"]
-mesh = SubResource("PlaneMesh_opk07")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = SubResource("BoxShape3D_2bm1d")
+
+[node name="GridMap" type="GridMap" parent="Plane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh_library = SubResource("MeshLibrary_hklma")
+cell_size = Vector3(16, 2, 16)
+cell_scale = 8.0
+data = {
+"cells": PackedInt32Array(65533, 65535, 1, 65533, 0, 1)
+}
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 21.3066, 18.1673)
@@ -214,6 +231,8 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -7)
 text = "uno"
 duration = 1.0
 
+[node name="GoalBillboard" parent="Dialog" instance=ExtResource("14_0ikhl")]
+
 [node name="Dialog2" parent="." instance=ExtResource("10_6ihn6")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -16)
 text = "due"
@@ -224,45 +243,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -25)
 text = "tre"
 duration = 1.0
 
-[node name="Buccia" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.76751, 1.11292, -6.57832)
-script = ExtResource("12_7dfpx")
-
-[node name="banana" parent="Buccia" instance=ExtResource("13_ecp45")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buccia"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("BoxShape3D_p1ebg")
-
-[node name="Buccia2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1426, 0, -14.8313)
-script = ExtResource("12_7dfpx")
-
-[node name="banana" parent="Buccia2" instance=ExtResource("13_ecp45")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buccia2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("BoxShape3D_p1ebg")
-
-[node name="Buccia3" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.80737, 0, -21.5372)
-script = ExtResource("12_7dfpx")
-
-[node name="banana" parent="Buccia3" instance=ExtResource("13_ecp45")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buccia3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("BoxShape3D_p1ebg")
-
-[node name="Buccia4" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1818, 0, -31.1759)
-script = ExtResource("12_7dfpx")
-
-[node name="banana" parent="Buccia4" instance=ExtResource("13_ecp45")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buccia4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("BoxShape3D_p1ebg")
+[node name="Vent" parent="." instance=ExtResource("15_hwvsi")]
 
 [node name="Torretta" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -11.1919, 0.928251, 6.08668)
@@ -277,7 +258,3 @@ shape = SubResource("BoxShape3D_hwxik")
 [node name="RayCast3D" type="RayCast3D" parent="Torretta"]
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
-[connection signal="body_entered" from="Buccia" to="Buccia" method="_on_body_entered"]
-[connection signal="body_entered" from="Buccia2" to="Buccia2" method="_on_body_entered"]
-[connection signal="body_entered" from="Buccia3" to="Buccia3" method="_on_body_entered"]
-[connection signal="body_entered" from="Buccia4" to="Buccia4" method="_on_body_entered"]

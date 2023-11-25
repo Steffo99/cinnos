@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://crbal5m8uhcd5"]
+
+[ext_resource type="Script" path="res://Buccia.gd" id="1_v0c7a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1ebg"]
+size = Vector3(1.5, 0.5, 1.5)
+
+[node name="Vent" type="Area3D"]
+script = ExtResource("1_v0c7a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_p1ebg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

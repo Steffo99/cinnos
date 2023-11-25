@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ikq1a6muafo"]
+
+[ext_resource type="Texture2D" uid="uid://d0hvok3thbj6l" path="res://addons/goal.png" id="1_vpkde"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhace"]
+render_priority = 100
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("1_vpkde")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i87og"]
+material = SubResource("StandardMaterial3D_hhace")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[node name="GoalBillboard" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_i87og")
