@@ -8,4 +8,4 @@ class_name Trampolino
 func _on_body_entered(body):
 	if body is Player:
 		body.velocity.y += power
-		queue_free()
+		$Coll/Part.emitting = true

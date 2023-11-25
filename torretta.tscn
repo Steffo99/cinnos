@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0muettu1wwuw"]
+
+[ext_resource type="Script" path="res://Torretta.gd" id="1_vcetf"]
+[ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="2_6xcje"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hwxik"]
+size = Vector3(1.9188, 3.57475, 2.31203)
+
+[node name="Torretta" type="StaticBody3D"]
+transform = Transform3D(-0.810819, 0, 0.585297, 0, 1, 0, -0.585297, 0, -0.810819, -11.1919, 0.928251, 6.08668)
+script = ExtResource("1_vcetf")
+
+[node name="turret" parent="." instance=ExtResource("2_6xcje")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 1.09828, 0)
+shape = SubResource("BoxShape3D_hwxik")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
