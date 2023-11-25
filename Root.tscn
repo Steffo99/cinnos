@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=29 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" path="res://Unshaded.material" id="2_upp15"]
@@ -12,11 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://ct6sngef76p35" path="res://addons/grass.png" id="9_i8cb1"]
 [ext_resource type="PackedScene" uid="uid://bxj354o6rycsf" path="res://obstacles/house_c.tscn" id="9_xyam4"]
 [ext_resource type="PackedScene" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
-[ext_resource type="PlaneMesh" path="res://road_mesh_something.tres" id="10_7jwjs"]
+[ext_resource type="PlaneMesh" uid="uid://jy4q18wf2j41" path="res://road_mesh_something.tres" id="10_7jwjs"]
 [ext_resource type="PackedScene" path="res://obstacles/goal_billboard.tscn" id="14_0ikhl"]
 [ext_resource type="Script" path="res://Torretta.gd" id="15_058li"]
 [ext_resource type="PackedScene" path="res://models/vent.tscn" id="15_hwvsi"]
 [ext_resource type="PackedScene" uid="uid://t0gblqb4yr8m" path="res://models/turret.glb" id="16_upw73"]
+[ext_resource type="PackedScene" uid="uid://mahsivqsy3oo" path="res://panchina.tscn" id="18_ijdrl"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
@@ -256,5 +257,7 @@ transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 1.098
 shape = SubResource("BoxShape3D_hwxik")
 
 [node name="RayCast3D" type="RayCast3D" parent="Torretta"]
+
+[node name="Panchina" parent="." instance=ExtResource("18_ijdrl")]
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
