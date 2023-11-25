@@ -4,7 +4,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_atvc4"]
 
-[node name="House" type="StaticBody3D"]
+[node name="HouseA" type="StaticBody3D"]
 
 [node name="house1" parent="." instance=ExtResource("1_6lk2f")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
