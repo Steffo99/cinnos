@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 
 const SPEED = 5.0

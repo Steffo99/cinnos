@@ -1,15 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=9 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
+[ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pnmjt"]
+material = ExtResource("2_upp15")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kpyw3"]
 size = Vector3(1, 0.1, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4tnse"]
+material = ExtResource("2_upp15")
 size = Vector3(1, 0.1, 3)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_opk07"]
@@ -19,6 +22,7 @@ size = Vector3(1, 0.1, 3)
 [node name="Root" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927202, 0)
 script = ExtResource("1_wt4gx")
 
 [node name="Man" type="CollisionShape3D" parent="Player"]
