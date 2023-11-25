@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=11 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
+[ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
 
@@ -60,4 +61,25 @@ shape = SubResource("BoxShape3D_2bm1d")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.955149, 0.296125, 0, -0.296125, 0.955149, 0, 2.66196, 3.33182)
 
-[node name="Timer" type="Node" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -81.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "Garasauto"
+horizontal_alignment = 2
+
+[node name="GameTimer" type="Node" parent="Control/Label"]
+script = ExtResource("3_y362g")
