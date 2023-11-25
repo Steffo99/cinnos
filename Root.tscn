@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=18 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
 [ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
 [ext_resource type="PackedScene" uid="uid://ck1im1d6yhv84" path="res://obstacles/house.tscn" id="8_ntqnl"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
@@ -142,8 +143,10 @@ mesh = SubResource("PlaneMesh_opk07")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = SubResource("BoxShape3D_2bm1d")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.582109, 0.813111, 0, -0.813111, 0.582109, 0, 14.3066, 11.1673)
+script = ExtResource("8_auifr")
+target = NodePath("../Player")
 
 [node name="House" parent="." instance=ExtResource("8_ntqnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -11)

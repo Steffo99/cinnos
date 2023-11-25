@@ -14,6 +14,8 @@ class_name Player
 
 @export var collision_normal_max_y_for_floor: float = 0.9
 
+var last_direction: Vector2 = Vector2.UP
+
 
 func refill_jumps():
 	current_jumps = max_jumps
@@ -45,7 +47,10 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	rotation.y = input_dir.normalized().angle_to(Vector2.UP)
+	if input_dir.length() > 0.01:
+		last_direction = input_dir
+
+	rotation.y = last_direction.normalized().angle_to(Vector2.UP)
 	
 	# Gestisci collisioni
 	for collision_idx in range(get_slide_collision_count()):
