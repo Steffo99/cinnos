@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://4whij2hmts0t"]
+[gd_scene load_steps=21 format=3 uid="uid://4whij2hmts0t"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_wt4gx"]
 [ext_resource type="Material" uid="uid://dondfiavgo2ws" path="res://Unshaded.material" id="2_upp15"]
+[ext_resource type="Texture2D" uid="uid://uogmi4pvp64t" path="res://addons/bisio.png" id="3_27tel"]
 [ext_resource type="Texture2D" uid="uid://bwiymy4ls5l8a" path="res://addons/kenney_prototype_textures/red/texture_05.png" id="3_gtnhv"]
 [ext_resource type="FontFile" uid="uid://cseshyj4yw2f5" path="res://fonts/FiraSans-Medium.ttf" id="3_p3wyc"]
 [ext_resource type="Script" path="res://GameTimer.gd" id="3_y362g"]
@@ -9,12 +10,10 @@
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
 [ext_resource type="PackedScene" uid="uid://dp7p16vtxd1xr" path="res://obstacles/house_c.tscn" id="9_xyam4"]
+[ext_resource type="PackedScene" uid="uid://ccs202pcy4pce" path="res://obstacles/dialog.tscn" id="10_6ihn6"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tn1wg"]
-size = Vector2(48, 48)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_castg"]
 
@@ -85,10 +84,18 @@ grow_vertical = 2
 [node name="Character" type="TextureRect" parent="UI/TextBox/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = SubResource("PlaceholderTexture2D_tn1wg")
+texture = ExtResource("3_27tel")
 expand_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/TextBox/Panel/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/TextBox/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/TextBox/Panel/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 32
@@ -184,5 +191,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0518, 0, -18.4643)
 
 [node name="HouseC4" parent="." instance=ExtResource("9_xyam4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0518, 0, 8.53572)
+
+[node name="Dialog" parent="." instance=ExtResource("10_6ihn6")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -7)
+text = "uno"
+duration = 1.0
+
+[node name="Dialog2" parent="." instance=ExtResource("10_6ihn6")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -16)
+text = "due"
+duration = 1.0
+
+[node name="Dialog3" parent="." instance=ExtResource("10_6ihn6")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1, -25)
+text = "tre"
+duration = 1.0
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]

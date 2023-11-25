@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccs202pcy4pce"]
+
+[ext_resource type="Script" path="res://obstacles/dialog.gd" id="1_gbnol"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_30roe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4cwf4"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.0705882)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gmxbh"]
+material = SubResource("StandardMaterial3D_4cwf4")
+
+[node name="Dialog" type="Area3D"]
+script = ExtResource("1_gbnol")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_30roe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_gmxbh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
