@@ -25,6 +25,8 @@ func do_jump():
 	current_jumps -= 1
 	velocity += jump_impulse
 
+func on_banana():
+	velocity *= 2
 
 
 func _physics_process(delta):
