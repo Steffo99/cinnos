@@ -33,13 +33,13 @@ func _physics_process(delta):
 		do_jump()
 	
 	# Applica gravità
-	velocity += gravity_accel
+	velocity += gravity_accel * delta
 
 	# Applica input
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var input_change = input_dir * input_accel
-	velocity.x += input_change.x
-	velocity.z += input_change.y
+	velocity.x += input_change.x * delta
+	velocity.z += input_change.y * delta
 
 	print(velocity)
 
