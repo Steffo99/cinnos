@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://TextBox.gd" id="4_gpkq6"]
 [ext_resource type="FontFile" uid="uid://qf3uxmta6lpw" path="res://fonts/FiraCode-Medium.ttf" id="5_yvnu2"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="8_auifr"]
-[ext_resource type="PackedScene" uid="uid://ck1im1d6yhv84" path="res://obstacles/house.tscn" id="8_ntqnl"]
+[ext_resource type="PackedScene" uid="uid://dp7p16vtxd1xr" path="res://obstacles/house_c.tscn" id="9_xyam4"]
 
 [sub_resource type="Theme" id="Theme_hkcet"]
 Label/fonts/font = ExtResource("3_p3wyc")
@@ -126,6 +126,7 @@ script = ExtResource("3_y362g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.927202, 0)
 script = ExtResource("1_wt4gx")
 input_accel = 8.0
+jump_impulse = Vector3(0, 10, 0)
 friction = 0.99
 
 [node name="Man" type="CollisionShape3D" parent="Player"]
@@ -165,20 +166,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 shape = SubResource("BoxShape3D_2bm1d")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.582109, 0.813111, 0, -0.813111, 0.582109, 0, 14.3066, 11.1673)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 21.3066, 18.1673)
 script = ExtResource("8_auifr")
 target = NodePath("../Player")
 
-[node name="House" parent="." instance=ExtResource("8_ntqnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -11)
-
-[node name="House2" parent="." instance=ExtResource("8_ntqnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.36658, 0, 13.6653)
-
-[node name="House3" parent="." instance=ExtResource("8_ntqnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9757, 0, -2.54637)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.579826, -0.58827, -0.563685, 0.632141, -0.761305, 0.144266, -0.514003, -0.272679, 0.813294, 0, 0, 0)
+
+[node name="HouseC" parent="." instance=ExtResource("9_xyam4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9482, 0, -6.46428)
+
+[node name="HouseC2" parent="." instance=ExtResource("9_xyam4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.94815, 0, 15.5357)
+
+[node name="HouseC3" parent="." instance=ExtResource("9_xyam4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0518, 0, -18.4643)
+
+[node name="HouseC4" parent="." instance=ExtResource("9_xyam4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0518, 0, 8.53572)
 
 [connection signal="timeout" from="UI/TextBox/Timer" to="UI/TextBox" method="_on_timer_timeout"]
