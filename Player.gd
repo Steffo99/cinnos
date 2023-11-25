@@ -12,6 +12,8 @@ class_name Player
 @export var max_jumps = 1
 @onready var current_jumps = max_jumps
 
+@export var collision_normal_max_y_for_floor: float = 0.9
+
 
 func refill_jumps():
 	current_jumps = max_jumps
@@ -41,6 +43,12 @@ func _physics_process(delta):
 	velocity.x += input_change.x * delta
 	velocity.z += input_change.y * delta
 
-	print(velocity)
-
 	move_and_slide()
+	
+	# Gestisci collisioni
+	for collision_idx in range(get_slide_collision_count()):
+		var collision = get_slide_collision(collision_idx)
+		if collision.get_normal().y > collision_normal_max_y_for_floor:
+			continue
+		print("bonk")
+	
